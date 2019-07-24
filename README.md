@@ -1,4 +1,4 @@
-# homebrew-tap
+# homebrew-wpilib
 
 Homebrew formulae for WPILib through the [Homebrew](https://brew.sh/) package manager.
 
@@ -6,13 +6,10 @@ Homebrew formulae for WPILib through the [Homebrew](https://brew.sh/) package ma
 ## Installation
 
 ```
-brew tap wpilibsuite/tap
+brew tap wpilibsuite/wpilib
 brew install FORMULA
 ```
-
-## Formulae
 
 ## Documentation
 
 `brew help`, `man brew` or check [Homebrew's documentation](https://docs.brew.sh/)
-
