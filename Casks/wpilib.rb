@@ -1,16 +1,16 @@
 cask 'wpilib' do
-  version '2019.4.1'
-  sha256 '7ab231d07a7a99c9ad40e1b3585368b8b55981509754b5158c623ffc1a226e2b'
+  version '2020.1.1'
+  sha256 '3e30ca5e5c1282187bcc097cd024ccaae00a2d4d477282288613590740673a80'
 
   url "https://github.com/wpilibsuite/allwpilib/releases/download/v#{version}/WPILib_Mac-#{version}.tar.gz"
   appcast 'https://github.com/wpilibsuite/allwpilib/releases.atom'
-  name 'WPILib 2019'
+  name 'WPILib Suite'
   homepage "https://wpilib.org/"
 
   auto_updates = false
   depends_on cask: 'visual-studio-code'
 
-  install_dir = "#{ENV['HOME']}/frc2019"
+  install_dir = "#{ENV['HOME']}/wpilib/2020"
 
   artifact '.', target: install_dir
 
