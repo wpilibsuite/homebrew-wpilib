@@ -1,0 +1,14 @@
+# Test all formula and casks
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+
+pool:
+  vmImage: 'macOS-10.14'
+
+steps:
+- displayName: 'Run a one-line script'
+  script: echo Hello, world!
