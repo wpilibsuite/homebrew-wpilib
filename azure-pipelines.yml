@@ -6,9 +6,30 @@ trigger:
     include:
     - master
 
-pool:
-  vmImage: 'macOS-10.14'
+variables:
+  ci: True
 
-steps:
-- displayName: 'Run a one-line script'
-  script: echo Hello, world!
+pool:
+  vmImage: 'macOS-latest'
+
+jobs:
+  job: Formula Style
+    steps:
+    - displayName: Check Style
+      script: brew style Formula/
+
+  job: Casks CI
+    steps:
+      script: brew cask ci
+
+
+  job: Test
+    steps:
+    - displayName: Test Formula
+      script: |
+        for f in $( ls ./Formula/*.rb ); do
+          brew audit $f
+          brew install -v $f
+          brew test $f
+          brew uninstall $f
+        done
