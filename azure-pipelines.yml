@@ -10,7 +10,7 @@ pool:
   vmImage: 'macOS-latest'
 
 jobs:
-- job: 'Casks CI'
+- job: Casks_CI
   steps:
   - script: |
       brew update-reset "$(brew --repository)"
@@ -24,7 +24,7 @@ jobs:
       brew cask ci
     displayName: brew cask ci
         
-- job: 'Formula CI'
+- job: Formula_CI
   steps:
   - script: |
       brew update-reset "$(brew --repository)"
