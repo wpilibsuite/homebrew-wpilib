@@ -18,7 +18,7 @@ jobs:
       brew tap wpilibsuite/wpilib
       brew update-reset "$(brew --repository homebrew/cask)"
       brew update-reset "$(brew --repository wpilibsuite/wpilib)"
-      brew pull --clean "https://github.com/wpilibsuite/homebrew-wpilib/pull/${{ System.PullRequest.PullRequestNumber }}"
+      brew pull --clean "https://github.com/wpilibsuite/homebrew-wpilib/pull/$(System.PullRequest.PullRequestNumber)"
   - displayName: brew cask ci
     script: |
       cd "$(brew --repository wpilibsuite/wpilib)"
@@ -32,4 +32,4 @@ jobs:
       brew update
   - displayName: brew test-bot
     script: |
-      brew test-bot --ci-pr "https://github.com/wpilibsuite/homebrew-wpilib/pull/${{ System.PullRequest.PullRequestNumber }}"
+      brew test-bot --ci-pr "https://github.com/wpilibsuite/homebrew-wpilib/pull/$(System.PullRequest.PullRequestNumber)"
