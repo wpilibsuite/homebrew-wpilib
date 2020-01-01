@@ -12,24 +12,24 @@ pool:
 jobs:
 - job: Casks CI
   steps:
-  - displayName: brew pull
-    script: |
+  - script: |
       brew update-reset "$(brew --repository)"
       brew tap wpilibsuite/wpilib
       brew update-reset "$(brew --repository homebrew/cask)"
       brew update-reset "$(brew --repository wpilibsuite/wpilib)"
       brew pull --clean "https://github.com/wpilibsuite/homebrew-wpilib/pull/$(System.PullRequest.PullRequestNumber)"
-  - displayName: brew cask ci
-    script: |
+    displayName: brew pull
+  - script: |
       cd "$(brew --repository wpilibsuite/wpilib)"
       brew cask ci
+    displayName: brew cask ci
         
 - job: Formula CI
   steps:
-  - displayName: brew pull
-    script: |
+  - script: |
       brew update-reset "$(brew --repository)"
       brew update
-  - displayName: brew test-bot
-    script: |
+    displayName: brew pull
+  - script: |
       brew test-bot --ci-pr "https://github.com/wpilibsuite/homebrew-wpilib/pull/$(System.PullRequest.PullRequestNumber)"
+    displayName: brew test-bot
