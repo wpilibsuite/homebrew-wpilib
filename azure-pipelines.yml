@@ -5,6 +5,7 @@ trigger: none
 
 variables:
   ci: True
+  xcodeRoot: /Applications/Xcode_11.3.app
 
 pool:
   vmImage: 'macOS-latest'
@@ -12,6 +13,8 @@ pool:
 jobs:
 - job: Casks_CI
   steps:
+  - script: sudo xcode-select -s $(xcodeRoot)/Contents/Developer
+    displayName: xcode-select
   - script: |
       brew update-reset "$(brew --repository)"
       brew tap wpilibsuite/wpilib
@@ -26,6 +29,8 @@ jobs:
         
 - job: Formula_CI
   steps:
+  - script: sudo xcode-select -s $(xcodeRoot)/Contents/Developer
+    displayName: xcode-select
   - script: |
       brew update-reset "$(brew --repository)"
       brew update
