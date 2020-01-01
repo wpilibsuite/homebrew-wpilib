@@ -1,10 +1,7 @@
 # Test all formula and casks
 
 # We only want to test on PRs
-trigger:
-  branches:
-    exclude:
-    - '*'
+trigger: none
 
 variables:
   ci: True
