@@ -1,10 +1,10 @@
 # Test all formula and casks
 
+# We only want to test on PRs
 trigger:
-  batch: true
   branches:
-    include:
-    - master
+    exclude:
+    - '*'
 
 variables:
   ci: True
@@ -13,23 +13,26 @@ pool:
   vmImage: 'macOS-latest'
 
 jobs:
-  job: Formula Style
-    steps:
-    - displayName: Check Style
-      script: brew style Formula/
-
   job: Casks CI
     steps:
-      script: brew cask ci
-
-
-  job: Test
-    steps:
-    - displayName: Test Formula
+    - displayName: brew pull
       script: |
-        for f in $( ls ./Formula/*.rb ); do
-          brew audit $f
-          brew install -v $f
-          brew test $f
-          brew uninstall $f
-        done
+        brew update-reset "$(brew --repository)"
+        brew tap wpilibsuite/wpilib
+        brew update-reset "$(brew --repository homebrew/cask)"
+        brew update-reset "$(brew --repository wpilibsuite/wpilib)"
+        brew pull --clean "https://github.com/wpilibsuite/homebrew-wpilib/pull/${{ System.PullRequest.PullRequestNumber }}"
+    - displayName: brew cask ci
+      script: |
+        cd "$(brew --repository wpilibsuite/wpilib)"
+        brew cask ci
+        
+  job: Formula CI
+    steps:
+    - displayName: brew pull
+      script: |
+        brew update-reset "$(brew --repository)"
+        brew update
+    - displayName: brew test-bot
+      script: |
+        brew test-bot --ci-pr "https://github.com/wpilibsuite/homebrew-wpilib/pull/${{ System.PullRequest.PullRequestNumber }}"
