@@ -2,12 +2,12 @@ cask 'wpilib' do
   version '2020.1.1'
   sha256 '3e30ca5e5c1282187bcc097cd024ccaae00a2d4d477282288613590740673a80'
 
+  # github.com/wpilibsuite/allwpilib was verified as official when first introduced to the cask
   url "https://github.com/wpilibsuite/allwpilib/releases/download/v#{version}/WPILib_Mac-#{version}.tar.gz"
   appcast 'https://github.com/wpilibsuite/allwpilib/releases.atom'
   name 'WPILib Suite'
-  homepage "https://wpilib.org/"
+  homepage 'https://wpilib.org/'
 
-  auto_updates = false
   depends_on cask: 'visual-studio-code'
 
   install_dir = "#{ENV['HOME']}/wpilib/2020"
