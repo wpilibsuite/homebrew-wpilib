@@ -1,6 +1,6 @@
 cask 'wpilib' do
-  version '2020.1.2'
-  sha256 'd14fe56b293ff2a9cddd7576801fa42c6f920e8e6c74cde9f2741864507ab375'
+  version '2020.2.2'
+  sha256 '00ab33d58a7497411688d5085e65cf874385bbcfead5d566bdad5c2dc183338b'
 
   # github.com/wpilibsuite/allwpilib was verified as official when first introduced to the cask
   url "https://github.com/wpilibsuite/allwpilib/releases/download/v#{version}/WPILib_Mac-#{version}.tar.gz"
