@@ -23,6 +23,9 @@ jobs:
       brew pull --clean "https://github.com/wpilibsuite/homebrew-wpilib/pull/$(System.PullRequest.PullRequestNumber)"
     displayName: brew pull
   - script: |
+      brew doctor
+    displayName: brew doctor
+  - script: |
       cd "$(brew --repository wpilibsuite/wpilib)"
       brew cask ci
     displayName: brew cask ci
@@ -35,6 +38,9 @@ jobs:
       brew update-reset "$(brew --repository)"
       brew update
     displayName: brew pull
+  - script: |
+      brew doctor
+    displayName: brew doctor
   - script: |
       brew test-bot --ci-pr "https://github.com/wpilibsuite/homebrew-wpilib/pull/$(System.PullRequest.PullRequestNumber)"
     displayName: brew test-bot
