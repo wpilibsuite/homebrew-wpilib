@@ -25,7 +25,7 @@ jobs:
   - script: |
       cd "$(brew --repository wpilibsuite/wpilib)"
       brew cask ci
-    displayName: brew cask ci
+    displayName: brew cask ci --force --verbose --debug
         
 - job: Formula_CI
   steps:
