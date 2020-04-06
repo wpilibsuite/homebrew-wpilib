@@ -5,7 +5,7 @@ trigger: none
 
 variables:
   ci: True
-  xcodeRoot: /Applications/Xcode_11.3.app
+  xcodeRoot: /Applications/Xcode_11.4.app
 
 pool:
   vmImage: 'macOS-latest'
