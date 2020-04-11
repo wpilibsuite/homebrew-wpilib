@@ -23,9 +23,6 @@ jobs:
       brew pull --clean "https://github.com/wpilibsuite/homebrew-wpilib/pull/$(System.PullRequest.PullRequestNumber)"
     displayName: brew pull
   - script: |
-      echo $HOMEBREW_CASK_OPTS
-    displayName: testing
-  - script: |
       cd "$(brew --repository wpilibsuite/wpilib)"
       brew cask ci
     displayName: brew cask ci
