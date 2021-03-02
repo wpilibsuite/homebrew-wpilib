@@ -16,7 +16,7 @@ cask 'wpilib' do
 
   preflight do
     system_command 'mkdir', args: ['-p', "#{staged_path}/artifacts"]
-    system_command 'tar', args: ['-zxf', "#{staged_path}/WPILib_Mac-#{version}-artifacts.tar.gz", '-C', "#{stage_path}/artifacts"]
+    system_command 'tar', args: ['-zxf', "#{staged_path}/WPILib_Mac-#{version}-artifacts.tar.gz", '-C', "#{staged_path}/artifacts"]
 
     system_command '/usr/bin/python', args: ["#{staged_path}/artifacts/tools/ToolsUpdater.py"]
 
