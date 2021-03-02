@@ -8,7 +8,7 @@ cask 'wpilib' do
   name 'WPILib Suite'
   homepage 'https://wpilib.org/'
 
-  depends_on  cask: 'visual-studio-code'
+  depends_on cask: 'visual-studio-code'
 
   install_dir = "#{ENV['HOME']}/wpilib/#{version.split('.', -1)[0]}"
 
