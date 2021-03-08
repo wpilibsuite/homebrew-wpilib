@@ -10,7 +10,8 @@ cask 'wpilib' do
 
   depends_on cask: 'visual-studio-code'
 
-  install_dir = "#{ENV['HOME']}/wpilib/#{version.split('.', -1)[0]}"
+  year = "#{version.split('.', -1)[0]}"
+  install_dir = "#{ENV['HOME']}/wpilib/#{year}"
 
   artifact 'artifacts', target: install_dir
 
@@ -26,6 +27,8 @@ cask 'wpilib' do
 
     system_command 'rm', args: ["#{staged_path}/WPILib_Mac-#{version}-artifacts.tar.gz"]
     system_command 'rm', args: ['-rf', "#{staged_path}/WPILibInstaller.app"]
+
+    system "find #{staged_path}/artifacts -perm +111 -type f -exec xattr -d com.apple.quarantine {} \\; >/dev/null 2>&1"
   end
 
   uninstall_preflight do
