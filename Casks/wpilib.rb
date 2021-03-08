@@ -17,6 +17,7 @@ cask 'wpilib' do
 
   preflight do
     system_command 'mkdir', args: ['-p', "#{staged_path}/artifacts"]
+    system_command 'xattr', args: ['-d', 'com.apple.quarantine', "#{staged_path}/WPILib_Mac-#{version}-artifacts.tar.gz"]
     system_command 'tar', args: ['-zxf', "#{staged_path}/WPILib_Mac-#{version}-artifacts.tar.gz", '-C', "#{staged_path}/artifacts"]
 
     system_command '/usr/bin/python', args: ["#{staged_path}/artifacts/tools/ToolsUpdater.py"]
@@ -27,8 +28,6 @@ cask 'wpilib' do
 
     system_command 'rm', args: ["#{staged_path}/WPILib_Mac-#{version}-artifacts.tar.gz"]
     system_command 'rm', args: ['-rf', "#{staged_path}/WPILibInstaller.app"]
-
-    system "find #{staged_path}/artifacts -perm +111 -type f -exec xattr -d com.apple.quarantine {} \\; >/dev/null 2>&1"
   end
 
   uninstall_preflight do
