@@ -23,7 +23,7 @@ cask 'wpilib' do
     system_command '/usr/bin/python', args: ["#{staged_path}/artifacts/tools/ToolsUpdater.py"]
 
     Dir.glob("#{staged_path}/artifacts/vsCodeExtensions/*.vsix") do |vsix_file|
-      system_command '/usr/local/bin/code', args: ['--install-extension', vsix_file]
+      system_command '#{ENV['HOMEBREW_PREFIX']}/bin/code', args: ['--install-extension', vsix_file]
     end
 
     system_command 'rm', args: ["#{staged_path}/WPILib_Mac-#{version}-artifacts.tar.gz"]
@@ -31,6 +31,6 @@ cask 'wpilib' do
   end
 
   uninstall_preflight do
-    system_command '/usr/local/bin/code', args: ['--uninstall-extension', 'wpilibsuite.vscode-wpilib']
+    system_command '#{ENV['HOMEBREW_PREFIX']}/bin/code', args: ['--uninstall-extension', 'wpilibsuite.vscode-wpilib']
   end
 end
