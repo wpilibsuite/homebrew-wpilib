@@ -5,7 +5,7 @@ trigger: none
 
 variables:
   ci: True
-  xcodeRoot: /Applications/Xcode_11.4.app
+  xcodeRoot: /Applications/Xcode_14.2.app
 
 pool:
   vmImage: 'macOS-latest'
@@ -20,13 +20,14 @@ jobs:
       brew tap wpilibsuite/wpilib
       brew update-reset "$(brew --repository homebrew/cask)"
       brew update-reset "$(brew --repository wpilibsuite/wpilib)"
-      brew pull --clean "https://github.com/wpilibsuite/homebrew-wpilib/pull/$(System.PullRequest.PullRequestNumber)"
-    displayName: brew pull
+      brew install hub
+      hub checkout "https://github.com/wpilibsuite/homebrew-wpilib/pull/$(System.PullRequest.PullRequestNumber)"
+    displayName: hub checkout
   - script: |
       cd "$(brew --repository wpilibsuite/wpilib)"
       brew cask ci
     displayName: brew cask ci
-        
+
 - job: Formula_CI
   steps:
   - script: sudo xcode-select -s $(xcodeRoot)/Contents/Developer
@@ -34,7 +35,7 @@ jobs:
   - script: |
       brew update-reset "$(brew --repository)"
       brew update
-    displayName: brew pull
+    displayName: brew update
   - script: |
-      brew test-bot --ci-pr "https://github.com/wpilibsuite/homebrew-wpilib/pull/$(System.PullRequest.PullRequestNumber)"
+      brew test-bot --cleanup --junit --local "https://github.com/wpilibsuite/homebrew-wpilib/pull/$(System.PullRequest.PullRequestNumber)"
     displayName: brew test-bot
